@@ -10,6 +10,8 @@ import domain.Factura;
 import domain.MetodosCliente;
 import domain.MetodosDocumentos;
 import domain.MetodosProducto;
+import java.awt.Cursor;
+import static java.awt.Frame.HAND_CURSOR;
 import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -39,6 +41,11 @@ public class Venta extends javax.swing.JFrame {
         ccuotas.setEnabled(false);
         bproducto.setEnabled(false);
         inproducto.setEditable(false);
+        setLocationRelativeTo(null);
+                        bmenu.setOpaque(false);
+        bmenu.setContentAreaFilled(false);
+        bmenu.setBorderPainted(false);
+        bmenu.setCursor(new Cursor(HAND_CURSOR));
     }
 
     public void ingreso() {
@@ -76,7 +83,7 @@ public class Venta extends javax.swing.JFrame {
         inproducto = new javax.swing.JTextField();
         mproducto = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        menu = new javax.swing.JButton();
+        bmenu = new javax.swing.JButton();
         ingresar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         mprecio = new javax.swing.JLabel();
@@ -138,10 +145,10 @@ public class Venta extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("CANTIDAD DE CUOTAS");
 
-        menu.setText("MENU");
-        menu.addActionListener(new java.awt.event.ActionListener() {
+        bmenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/home.png"))); // NOI18N
+        bmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuActionPerformed(evt);
+                bmenuActionPerformed(evt);
             }
         });
 
@@ -239,6 +246,10 @@ public class Venta extends javax.swing.JFrame {
                         .addGap(108, 108, 108)
                         .addComponent(bproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(305, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelVentaLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(189, 189, 189))
             .addGroup(jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelVentaLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -296,10 +307,7 @@ public class Venta extends javax.swing.JFrame {
                         .addGroup(jPanelVentaLayout.createSequentialGroup()
                             .addGap(10, 10, 10)
                             .addComponent(ccuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelVentaLayout.createSequentialGroup()
-                            .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(21, 21, 21)
-                            .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanelVentaLayout.setVerticalGroup(
@@ -309,7 +317,9 @@ public class Venta extends javax.swing.JFrame {
                 .addComponent(jButtonBuscarCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
                 .addComponent(bproducto)
-                .addGap(264, 264, 264))
+                .addGap(154, 154, 154)
+                .addComponent(bmenu)
+                .addGap(53, 53, 53))
             .addGroup(jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelVentaLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -356,9 +366,7 @@ public class Venta extends javax.swing.JFrame {
                     .addGap(10, 10, 10)
                     .addComponent(ccuotas, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(20, 20, 20)
-                    .addGroup(jPanelVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -605,7 +613,7 @@ public class Venta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ingresarActionPerformed
 
-    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
+    private void bmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmenuActionPerformed
 
         incliente.setText("");
         inproducto.setText("");
@@ -618,7 +626,7 @@ public class Venta extends javax.swing.JFrame {
         ui.VPrincipal mostrar = new ui.VPrincipal();
         mostrar.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_menuActionPerformed
+    }//GEN-LAST:event_bmenuActionPerformed
 
     private void inproductoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inproductoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -807,6 +815,7 @@ public class Venta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bmenu;
     private javax.swing.JButton bproducto;
     private javax.swing.JButton ccuotas;
     private javax.swing.JRadioButton diezc;
@@ -839,7 +848,6 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JTable jTableProductos;
     private javax.swing.JLabel mcliente;
     private javax.swing.JLabel mcuota;
-    private javax.swing.JButton menu;
     private javax.swing.JLabel mprecio;
     private javax.swing.JLabel mproducto;
     private javax.swing.JLabel precio;

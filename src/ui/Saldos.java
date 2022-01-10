@@ -17,6 +17,7 @@ public class Saldos extends javax.swing.JFrame {
      */
     public Saldos() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

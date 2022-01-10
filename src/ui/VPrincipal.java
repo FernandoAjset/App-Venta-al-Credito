@@ -18,11 +18,11 @@ public class VPrincipal extends javax.swing.JFrame {
      */
     public VPrincipal() {
         initComponents();
-        this.setSize(new Dimension(650, 550));
-        this.setMinimumSize(new Dimension(500, 400));
+        this.setSize(new Dimension(700, 350));
+        this.setMinimumSize(new Dimension(700, 350));
         jMenuReportes.setVisible(false);
         jMenuReportes.setEnabled(false);
-        
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,6 +37,7 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        fondo = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenuProductos = new javax.swing.JMenu();
         jMenuItemCrearProducto = new javax.swing.JMenuItem();
@@ -60,7 +61,13 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
+        setMaximumSize(new java.awt.Dimension(700, 350));
+        setMinimumSize(new java.awt.Dimension(700, 350));
+        setPreferredSize(new java.awt.Dimension(700, 350));
+        setResizable(false);
+        setSize(new java.awt.Dimension(700, 350));
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.jpg"))); // NOI18N
 
         jMenuProductos.setText("Productos");
 
@@ -145,6 +152,19 @@ public class VPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar2);
 
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(fondo, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,6 +248,7 @@ public class VPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fondo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

@@ -16,6 +16,7 @@ public class Deudores extends javax.swing.JFrame {
      */
     public Deudores() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

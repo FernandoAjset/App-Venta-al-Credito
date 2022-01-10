@@ -41,7 +41,7 @@ public class VerContrato extends javax.swing.JFrame {
         consulta();
         vertexto.setText(texto);
         vertexto.setEditable(false);
-
+        setLocationRelativeTo(null);
     }
 
     public void consulta() {

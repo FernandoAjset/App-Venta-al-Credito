@@ -7,7 +7,9 @@ package ui;
 
 import domain.MetodosCliente;
 import domain.MetodosDocumentos;
+import java.awt.Cursor;
 import java.awt.Dimension;
+import static java.awt.Frame.HAND_CURSOR;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -34,6 +36,11 @@ public class BuscarFactura extends javax.swing.JFrame {
         verfactura.setEnabled(false);
         tablafacturas.setEnabled(false);
         vercontrato.setEnabled(false);
+        setLocationRelativeTo(null);
+                        bmenu.setOpaque(false);
+        bmenu.setContentAreaFilled(false);
+        bmenu.setBorderPainted(false);
+        bmenu.setCursor(new Cursor(HAND_CURSOR));
     }
 
     private void cargarClientes() {
@@ -83,14 +90,13 @@ public class BuscarFactura extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         ccliente = new javax.swing.JTextField();
-        regresar = new javax.swing.JButton();
         panelfacturascliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablafacturas = new javax.swing.JTable();
         buscar = new javax.swing.JButton();
         verfactura = new javax.swing.JButton();
         vercontrato = new javax.swing.JButton();
-        jButtonVolver = new javax.swing.JButton();
+        bmenu = new javax.swing.JButton();
         jPanelMostrarClientes = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
@@ -115,13 +121,6 @@ public class BuscarFactura extends javax.swing.JFrame {
         jLabel2.setText("PARA BUSCAR UNA FACTURA");
 
         jLabel1.setText("Codigo Cliente:");
-
-        regresar.setText("Regresar");
-        regresar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regresarActionPerformed(evt);
-            }
-        });
 
         tablafacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,10 +178,10 @@ public class BuscarFactura extends javax.swing.JFrame {
             }
         });
 
-        jButtonVolver.setText("Volver");
-        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
+        bmenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/home.png"))); // NOI18N
+        bmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVolverActionPerformed(evt);
+                bmenuActionPerformed(evt);
             }
         });
 
@@ -191,16 +190,16 @@ public class BuscarFactura extends javax.swing.JFrame {
         jPanelBuscarFacturaLayout.setHorizontalGroup(
             jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBuscarFacturaLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(96, 96, 96)
                 .addComponent(verfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(vercontrato, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addComponent(bmenu, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
             .addGroup(jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelBuscarFacturaLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 48, Short.MAX_VALUE)
                     .addGroup(jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,22 +219,20 @@ public class BuscarFactura extends javax.swing.JFrame {
                                 .addComponent(panelfacturascliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanelBuscarFacturaLayout.createSequentialGroup()
                                     .addGap(30, 30, 30)
-                                    .addComponent(facturaSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(jPanelBuscarFacturaLayout.createSequentialGroup()
-                            .addGap(490, 490, 490)
-                            .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(facturaSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGap(0, 48, Short.MAX_VALUE)))
         );
         jPanelBuscarFacturaLayout.setVerticalGroup(
             jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBuscarFacturaLayout.createSequentialGroup()
-                .addContainerGap(460, Short.MAX_VALUE)
-                .addGroup(jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(verfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(vercontrato, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(80, 80, 80))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verfactura, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vercontrato, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBuscarFacturaLayout.createSequentialGroup()
+                .addGap(0, 485, Short.MAX_VALUE)
+                .addComponent(bmenu))
             .addGroup(jPanelBuscarFacturaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelBuscarFacturaLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -256,9 +253,7 @@ public class BuscarFactura extends javax.swing.JFrame {
                         .addGroup(jPanelBuscarFacturaLayout.createSequentialGroup()
                             .addGap(280, 280, 280)
                             .addComponent(facturaSeleccionada, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(86, 86, 86)
-                    .addComponent(regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 91, Short.MAX_VALUE)))
         );
 
         jTabbedConsultaDocumentos.addTab("Buscar Documento", jPanelBuscarFactura);
@@ -305,23 +300,16 @@ public class BuscarFactura extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelClienteSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         jTabbedConsultaDocumentos.addTab("Mostrar Clientes", jPanelMostrarClientes);
 
         getContentPane().add(jTabbedConsultaDocumentos);
-        jTabbedConsultaDocumentos.setBounds(0, 0, 730, 540);
+        jTabbedConsultaDocumentos.setBounds(0, 0, 730, 570);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        ccliente.setText("");
-        ui.VPrincipal mostrar = new ui.VPrincipal();
-        mostrar.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_regresarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
@@ -410,14 +398,14 @@ public class BuscarFactura extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableClientesMouseClicked
 
-    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
+    private void bmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmenuActionPerformed
         limpiartabla();
         ccliente.setText("");
         facturaSeleccionada.setText("");
         ui.VPrincipal mostrar = new ui.VPrincipal();
         mostrar.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButtonVolverActionPerformed
+    }//GEN-LAST:event_bmenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,10 +443,10 @@ public class BuscarFactura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bmenu;
     private javax.swing.JButton buscar;
     private javax.swing.JTextField ccliente;
     private javax.swing.JLabel facturaSeleccionada;
-    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -471,7 +459,6 @@ public class BuscarFactura extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedConsultaDocumentos;
     private javax.swing.JTable jTableClientes;
     private javax.swing.JPanel panelfacturascliente;
-    private javax.swing.JButton regresar;
     private javax.swing.JTable tablafacturas;
     private javax.swing.JButton vercontrato;
     private javax.swing.JButton verfactura;

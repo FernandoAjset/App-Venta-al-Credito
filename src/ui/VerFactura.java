@@ -30,6 +30,7 @@ public class VerFactura extends javax.swing.JFrame {
         this.setMinimumSize(new Dimension(540, 620));
         cargar();
         detalles.setEnabled(false);
+        setLocationRelativeTo(null);
     }
 
     /**
