@@ -231,4 +231,30 @@ public class MetodosProducto {
             return false;
         }
     }
+
+    public static boolean eliminarProducto(Producto productoEliminado) {
+        try {
+            PreparedStatement pps = Conexiones.Conexion.getConexion().prepareStatement("DELETE FROM producto where cproducto='" + productoEliminado.getCodigoProducto() + "' AND ROWNUM=1");
+            pps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "La BD tiene problemas" + e.getMessage(),
+                    "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+    
+        public static boolean eliminarStock(Producto productoEliminado) {
+        try {
+            PreparedStatement pps = Conexiones.Conexion.getConexion().prepareStatement("DELETE FROM stock where cproducto='" + productoEliminado.getCodigoProducto() + "' AND ROWNUM=1");
+            pps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "La BD tiene problemas" + e.getMessage(),
+                    "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
 }

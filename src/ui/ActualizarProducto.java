@@ -21,6 +21,7 @@ public class ActualizarProducto extends javax.swing.JFrame {
      * Creates new form ActualizarProducto
      */
     Producto productoEditado = new Producto();
+    boolean seleccion;
 
     public ActualizarProducto() {
         initComponents();
@@ -59,6 +60,7 @@ public class ActualizarProducto extends javax.swing.JFrame {
         Volver = new javax.swing.JButton();
         jTextFieldExistencia = new javax.swing.JTextField();
         jLabelPrecio1 = new javax.swing.JLabel();
+        jButtonEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +83,7 @@ public class ActualizarProducto extends javax.swing.JFrame {
 
         jLabelPrecio.setText("Precio del producto");
 
-        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setText("Editar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarActionPerformed(evt);
@@ -97,6 +99,15 @@ public class ActualizarProducto extends javax.swing.JFrame {
 
         jLabelPrecio1.setText("Existencia del producto");
 
+        jButtonEliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonEliminar.setForeground(new java.awt.Color(255, 0, 0));
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,8 +122,11 @@ public class ActualizarProducto extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabelNombre)
-                                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonEliminar)))
+                            .addGap(143, 143, 143)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(Volver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabelPrecio)
@@ -140,7 +154,8 @@ public class ActualizarProducto extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
-                    .addComponent(Volver))
+                    .addComponent(Volver)
+                    .addComponent(jButtonEliminar))
                 .addContainerGap())
         );
 
@@ -158,6 +173,7 @@ public class ActualizarProducto extends javax.swing.JFrame {
         jTextFieldNombre.setText(productoEditado.getNombreProducto());
         jTextFieldPrecio.setText(String.valueOf(productoEditado.getPrecioProducto()));
         jTextFieldExistencia.setText(existenciaString);
+        seleccion = true;
     }//GEN-LAST:event_jTableProductosMouseClicked
 
     private void VolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverActionPerformed
@@ -183,6 +199,8 @@ public class ActualizarProducto extends javax.swing.JFrame {
                         mostrarProductos();
                         jTextFieldNombre.setText("");
                         jTextFieldPrecio.setText("");
+                        jTextFieldExistencia.setText("");
+                        seleccion = false;
                     }
                 }
             } catch (NumberFormatException ex) {
@@ -190,6 +208,26 @@ public class ActualizarProducto extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        if (seleccion) {
+            int respuestaEliminar = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar este registro?",
+                    "ELIMINAR PRODUCTO", JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            if (respuestaEliminar == 0) {
+                MetodosProducto.eliminarProducto(productoEditado);
+                MetodosProducto.eliminarStock(productoEditado);
+                mostrarProductos();
+                jTextFieldNombre.setText("");
+                jTextFieldPrecio.setText("");
+                jTextFieldExistencia.setText("");
+                seleccion = false;
+            }
+        } else {
+            JOptionPane.showConfirmDialog(null, "Seleccione un registro", "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,6 +266,7 @@ public class ActualizarProducto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Volver;
+    private javax.swing.JButton jButtonEliminar;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelPrecio;

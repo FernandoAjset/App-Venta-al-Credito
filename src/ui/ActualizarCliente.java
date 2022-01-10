@@ -21,6 +21,7 @@ public class ActualizarCliente extends javax.swing.JFrame {
      * Creates new form ActualizarCliente
      */
     Cliente clienteEditado = new Cliente();
+    boolean seleccionado = false;
 
     public ActualizarCliente() {
         initComponents();
@@ -47,6 +48,7 @@ public class ActualizarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButtonEliminar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -59,10 +61,19 @@ public class ActualizarCliente extends javax.swing.JFrame {
         jTextFieldNit = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldTelefono = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Guardar = new javax.swing.JButton();
+        jButtonVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButtonEliminar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButtonEliminar.setForeground(new java.awt.Color(255, 0, 0));
+        jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jTableClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,17 +100,17 @@ public class ActualizarCliente extends javax.swing.JFrame {
 
         jLabel5.setText("Teléfono");
 
-        jButton1.setText("Guardar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Guardar.setText("Guardar");
+        Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                GuardarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonVolver.setText("Volver");
+        jButtonVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonVolverActionPerformed(evt);
             }
         });
 
@@ -118,9 +129,11 @@ public class ActualizarCliente extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jButtonEliminar)
+                                .addGap(158, 158, 158)
+                                .addComponent(jButtonVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,10 +183,12 @@ public class ActualizarCliente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(Guardar)
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonVolver)
+                            .addComponent(jButtonEliminar))
                         .addGap(34, 34, 34))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -199,15 +214,16 @@ public class ActualizarCliente extends javax.swing.JFrame {
         jTextFieldDireccion.setText(clienteEditado.getDireccion());
         jTextFieldNit.setText(clienteEditado.getNit());
         jTextFieldTelefono.setText(String.valueOf(clienteEditado.getTelefono()));
+        seleccionado = true;
     }//GEN-LAST:event_jTableClientesMouseClicked
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVolverActionPerformed
         ui.VPrincipal mostrar = new ui.VPrincipal();
         mostrar.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonVolverActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         try {
             if (jTextFieldNombre.getText().isEmpty() || jTextFieldApellido.getText().isEmpty() || jTextFieldDireccion.getText().isEmpty() || jTextFieldNit.getText().isEmpty() || jTextFieldTelefono.getText().isEmpty()) {
                 JOptionPane.showConfirmDialog(null, "Llene todos los campos", "Error de datos", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
@@ -225,13 +241,35 @@ public class ActualizarCliente extends javax.swing.JFrame {
                     jTextFieldDireccion.setText("");
                     jTextFieldNit.setText("");
                     jTextFieldTelefono.setText("");
+                    seleccionado = false;
                 }
             }
 
         } catch (NumberFormatException ex) {
             JOptionPane.showConfirmDialog(null, "Valores no validos", "Error de valor", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_GuardarActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        if (seleccionado) {
+            int respuestaEliminar = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar este registro?",
+                    "ELIMINAR CLIENTE", JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            if (respuestaEliminar == 0) {
+                MetodosCliente.eliminarCliente(clienteEditado);
+                cargarClientes();
+                jTextFieldNombre.setText("");
+                jTextFieldApellido.setText("");
+                jTextFieldDireccion.setText("");
+                jTextFieldNit.setText("");
+                jTextFieldTelefono.setText("");
+                seleccionado = false;
+            }
+        } else {
+            JOptionPane.showConfirmDialog(null, "Seleccione un registro", "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -269,8 +307,9 @@ public class ActualizarCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Guardar;
+    private javax.swing.JButton jButtonEliminar;
+    private javax.swing.JButton jButtonVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

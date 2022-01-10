@@ -20,6 +20,8 @@ public class VPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setSize(new Dimension(650, 550));
         this.setMinimumSize(new Dimension(500, 400));
+        jMenuReportes.setVisible(false);
+        jMenuReportes.setEnabled(false);
     }
 
     /**
