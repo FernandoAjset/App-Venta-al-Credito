@@ -34,4 +34,9 @@ public class Producto {
         this.precioProducto = precioProducto;
     }
 
+    @Override
+    public String toString() {
+        return "Producto{" + "codigoProducto=" + codigoProducto + ", nombreProducto=" + nombreProducto + ", precioProducto=" + precioProducto + '}';
+    }
+
 }

@@ -37,7 +37,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemActualizarStock">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Actualizar Stock"/>
+                <Property name="text" type="java.lang.String" value="Ingresar Stock"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemActualizarStockActionPerformed"/>
@@ -47,6 +47,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar Producto"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemActualizarProductoActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -67,6 +70,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar cliente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemEditarClienteActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

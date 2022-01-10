@@ -203,4 +203,32 @@ public class MetodosProducto {
         }
     }
 
+    public static boolean EditarProducto(Producto productoEditado, int stock) {
+        try {
+            PreparedStatement pps = Conexiones.Conexion.getConexion().prepareStatement("update producto set nproducto='"
+                    + productoEditado.getNombreProducto() + "', pproducto='" + productoEditado.getPrecioProducto() + "' where cproducto='" + productoEditado.getCodigoProducto() + "'");
+            pps.executeUpdate();
+            EditarStock(productoEditado, stock);
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "La BD tiene problemas" + e.getMessage(),
+                    "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
+
+    public static boolean EditarStock(Producto productoEditado, int stock) {
+        try {
+            PreparedStatement pps = Conexiones.Conexion.getConexion().prepareStatement("update stock set cantidad_stock='"
+                    + stock + "' where cproducto='" + productoEditado.getCodigoProducto() + "'");
+            pps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "La BD tiene problemas" + e.getMessage(),
+                    "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(System.out);
+            return false;
+        }
+    }
 }

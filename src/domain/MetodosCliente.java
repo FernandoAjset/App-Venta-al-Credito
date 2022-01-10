@@ -5,6 +5,7 @@
  */
 package domain;
 
+import static domain.MetodosProducto.EditarStock;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -122,5 +124,19 @@ public class MetodosCliente {
             Logger.getLogger(MetodosCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         return detalleCliente;
+    }
+
+    public static boolean editarCliente(Cliente clienteEditado) {
+        try {
+            PreparedStatement pps = Conexiones.Conexion.getConexion().prepareStatement("update clientes set ncliente='" + clienteEditado.getNombre() + "' ,acliente='" + clienteEditado.getApellido()
+                    + "' ,dcliente='" + clienteEditado.getDireccion() + "' ,nitcliente='" + clienteEditado.getNit() + "',tcliente='" + clienteEditado.getTelefono()+"' where ccliente='"+clienteEditado.getCodigoCliente()+"' AND ROWNUM=1");
+            pps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "La BD tiene problemas" + e.getMessage(),
+                    "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace(System.out);
+            return false;
+        }
     }
 }

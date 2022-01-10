@@ -69,7 +69,7 @@ public class VPrincipal extends javax.swing.JFrame {
         });
         jMenuProductos.add(jMenuItemCrearProducto);
 
-        jMenuItemActualizarStock.setText("Actualizar Stock");
+        jMenuItemActualizarStock.setText("Ingresar Stock");
         jMenuItemActualizarStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemActualizarStockActionPerformed(evt);
@@ -78,6 +78,11 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuProductos.add(jMenuItemActualizarStock);
 
         jMenuItemActualizarProducto.setText("Actualizar Producto");
+        jMenuItemActualizarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemActualizarProductoActionPerformed(evt);
+            }
+        });
         jMenuProductos.add(jMenuItemActualizarProducto);
 
         jMenuBar2.add(jMenuProductos);
@@ -93,6 +98,11 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuClientes.add(jMenuItemCrearCliente);
 
         jMenuItemEditarCliente.setText("Editar cliente");
+        jMenuItemEditarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEditarClienteActionPerformed(evt);
+            }
+        });
         jMenuClientes.add(jMenuItemEditarCliente);
 
         jMenuBar2.add(jMenuClientes);
@@ -142,7 +152,7 @@ public class VPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCrearProductoActionPerformed
 
     private void jMenuItemActualizarStockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemActualizarStockActionPerformed
-        ui.ActualizarStock obj = new ui.ActualizarStock();
+        ui.IngresarStock obj = new ui.IngresarStock();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItemActualizarStockActionPerformed
@@ -154,7 +164,7 @@ public class VPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCrearClienteActionPerformed
 
     private void jMenuItemVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemVentaActionPerformed
-         ui.Venta obj = new ui.Venta();
+        ui.Venta obj = new ui.Venta();
         obj.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItemVentaActionPerformed
@@ -165,6 +175,18 @@ public class VPrincipal extends javax.swing.JFrame {
 
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItemActualizarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemActualizarProductoActionPerformed
+        ActualizarProducto nuevo = new ActualizarProducto();
+        nuevo.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItemActualizarProductoActionPerformed
+
+    private void jMenuItemEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditarClienteActionPerformed
+        ActualizarCliente nuevo = new ActualizarCliente();
+        nuevo.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItemEditarClienteActionPerformed
 
     /**
      * @param args the command line arguments
