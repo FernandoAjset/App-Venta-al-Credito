@@ -20,8 +20,6 @@ public class VPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setSize(new Dimension(700, 350));
         this.setMinimumSize(new Dimension(700, 350));
-        jMenuReportes.setVisible(false);
-        jMenuReportes.setEnabled(false);
         setLocationRelativeTo(null);
     }
 
@@ -49,10 +47,6 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuTransacciones = new javax.swing.JMenu();
         jMenuItemVenta = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuReportes = new javax.swing.JMenu();
-        jMenuItemDeudores = new javax.swing.JMenuItem();
-        jMenuItemMejorCliente = new javax.swing.JMenuItem();
-        jMenuItemSaldos = new javax.swing.JMenuItem();
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -136,19 +130,6 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenuTransacciones.add(jMenuItem1);
 
         jMenuBar2.add(jMenuTransacciones);
-
-        jMenuReportes.setText("Reportes");
-
-        jMenuItemDeudores.setText("Deudores");
-        jMenuReportes.add(jMenuItemDeudores);
-
-        jMenuItemMejorCliente.setText("Consulta del mejor / peor cliente");
-        jMenuReportes.add(jMenuItemMejorCliente);
-
-        jMenuItemSaldos.setText("Saldos");
-        jMenuReportes.add(jMenuItemSaldos);
-
-        jMenuBar2.add(jMenuReportes);
 
         setJMenuBar(jMenuBar2);
 
@@ -259,13 +240,9 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemActualizarStock;
     private javax.swing.JMenuItem jMenuItemCrearCliente;
     private javax.swing.JMenuItem jMenuItemCrearProducto;
-    private javax.swing.JMenuItem jMenuItemDeudores;
     private javax.swing.JMenuItem jMenuItemEditarCliente;
-    private javax.swing.JMenuItem jMenuItemMejorCliente;
-    private javax.swing.JMenuItem jMenuItemSaldos;
     private javax.swing.JMenuItem jMenuItemVenta;
     private javax.swing.JMenu jMenuProductos;
-    private javax.swing.JMenu jMenuReportes;
     private javax.swing.JMenu jMenuTransacciones;
     // End of variables declaration//GEN-END:variables
 }
