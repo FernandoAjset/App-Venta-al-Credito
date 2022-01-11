@@ -13,7 +13,7 @@ import java.util.Date;
 public class Factura {
 
     int codigoFactura;
-    Date fecha;
+    String fecha;
     int codigoCliente;
     String nombre;
     String direccion;
@@ -32,11 +32,11 @@ public class Factura {
         this.codigoFactura = codigoFactura;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -110,6 +110,11 @@ public class Factura {
 
     public void setMontoCuota(Double montoCuota) {
         this.montoCuota = montoCuota;
+    }
+
+    @Override
+    public String toString() {
+        return "Factura{" + "codigoFactura=" + codigoFactura + ", fecha=" + fecha + ", codigoCliente=" + codigoCliente + ", nombre=" + nombre + ", direccion=" + direccion + ", nit=" + nit + ", codigoProducto=" + codigoProducto + ", nombreProducto=" + nombreProducto + ", precioProducto=" + precioProducto + ", cuotas=" + cuotas + ", montoCuota=" + montoCuota + '}';
     }
 
 }

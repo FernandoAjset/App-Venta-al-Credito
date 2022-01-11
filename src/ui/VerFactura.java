@@ -6,9 +6,12 @@
 package ui;
 //import Consultas.BuscarFactura.*;
 
+import domain.Factura;
 import domain.MetodosDocumentos;
+import domain.PlantillaFactura;
 import java.awt.Dimension;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,6 +24,7 @@ public class VerFactura extends javax.swing.JFrame {
      * Creates new form VerFactura
      */
     int idFactura;
+    Factura detalleFactura = new Factura();
 
     public VerFactura() {
 
@@ -41,17 +45,18 @@ public class VerFactura extends javax.swing.JFrame {
     public void cargar() {
         DefaultTableModel modelo = (DefaultTableModel) detalles.getModel();
         modelo.setRowCount(0);
-        Vector detalleFactura = MetodosDocumentos.MostrarDetalleFactura(idFactura);
+        detalleFactura = MetodosDocumentos.MostrarDetalleFactura(idFactura);
         nfactura.setText(String.valueOf(idFactura));
-        fecha.setText(String.valueOf(detalleFactura.get(0)));
-        codigo.setText(String.valueOf(detalleFactura.get(1)));
-        nombre.setText(String.valueOf(detalleFactura.get(2)));
-        direccion.setText(String.valueOf(detalleFactura.get(3)));
-        nit.setText(String.valueOf(detalleFactura.get(4)));
+        fecha.setText(detalleFactura.getFecha());
+        codigo.setText(String.valueOf(detalleFactura.getCodigoCliente()));
+        nombre.setText(detalleFactura.getNombre());
+        direccion.setText(detalleFactura.getDireccion());
+        nit.setText(detalleFactura.getNit());
         Vector detalleProducto = new Vector();
-        for (int i = 5; i < detalleFactura.size(); i++) {
-            detalleProducto.add(detalleFactura.get(i));
-        }
+        detalleProducto.add(detalleFactura.getCodigoProducto());
+        detalleProducto.add(detalleFactura.getNombreProducto());
+        detalleProducto.add(detalleFactura.getPrecioProducto());
+        detalleProducto.add(detalleFactura.getCuotas());
         modelo.addRow(detalleProducto);
     }
 
@@ -84,6 +89,7 @@ public class VerFactura extends javax.swing.JFrame {
         detalles = new javax.swing.JTable();
         volver = new javax.swing.JButton();
         m1 = new javax.swing.JLabel();
+        jButtonToPdf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,14 +134,17 @@ public class VerFactura extends javax.swing.JFrame {
         m1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         m1.setText("FACTURA ELECTRONICA              SERIE: FECI-545");
 
+        jButtonToPdf.setText("Generar PDF");
+        jButtonToPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonToPdfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -175,6 +184,12 @@ public class VerFactura extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jButtonToPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(39, 39, 39)
@@ -212,14 +227,16 @@ public class VerFactura extends javax.swing.JFrame {
                 .addComponent(m, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonToPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(109, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(21, 21, 21)
                     .addComponent(m1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(527, Short.MAX_VALUE)))
+                    .addContainerGap(588, Short.MAX_VALUE)))
         );
 
         pack();
@@ -236,6 +253,13 @@ public class VerFactura extends javax.swing.JFrame {
         limpiartabla();
         this.setVisible(false);
     }//GEN-LAST:event_volverActionPerformed
+
+    private void jButtonToPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonToPdfActionPerformed
+        PlantillaFactura plantilla = new PlantillaFactura(detalleFactura);
+        if (plantilla.CrearPlantilla()) {
+            JOptionPane.showMessageDialog(null, "Factura Creada");
+        }
+    }//GEN-LAST:event_jButtonToPdfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,6 +302,7 @@ public class VerFactura extends javax.swing.JFrame {
     private javax.swing.JTable detalles;
     private javax.swing.JLabel direccion;
     private javax.swing.JLabel fecha;
+    private javax.swing.JButton jButtonToPdf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

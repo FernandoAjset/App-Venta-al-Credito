@@ -69,31 +69,35 @@ public class MetodosDocumentos {
         return listadoFacturas;
     }
 
-    public static Vector MostrarDetalleFactura(int idFactura) {
+    public static Factura MostrarDetalleFactura(int idFactura) {
+        Factura detalleFactura = new Factura();
         Vector v = new Vector();
         ResultSet res = Conexiones.Conexion.Consulta("select fecha, ccliente, nombre, direccion, nitcliente,"
-                + "cproducto,nproducto,pproducto,cuotas from factura where cfactura='"
+                + "cproducto,nproducto,pproducto,cuotas, mcuotas from factura where cfactura='"
                 + idFactura + "'");
         try {
             while (res.next()) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 String fecha = sdf.format(res.getDate(1));
-                v.add(fecha);
-                v.add(res.getInt(2));
-                v.add(res.getString(3));
-                v.add(res.getString(4));
-                v.add(res.getString(5));
-                v.add(res.getInt(6));
-                v.add(res.getString(7));
-                v.add(res.getDouble(8));
-                v.add(res.getInt(9));
+                detalleFactura.codigoFactura = idFactura;
+                detalleFactura.fecha = fecha;
+                detalleFactura.codigoCliente = res.getInt(2);
+                detalleFactura.nombre = res.getString(3);
+                detalleFactura.direccion = res.getString(4);
+                detalleFactura.nit = res.getString(5);
+                detalleFactura.codigoProducto = res.getInt(6);
+                detalleFactura.nombreProducto = res.getString(7);
+                detalleFactura.precioProducto = res.getDouble(8);
+                detalleFactura.cuotas = res.getInt(9);
+                detalleFactura.montoCuota = res.getDouble(10);
+                System.out.println("detalleFactura = " + detalleFactura);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error" + e.getMessage(),
                     "Error de Conexion", JOptionPane.ERROR_MESSAGE);
         }
 
-        return v;
+        return detalleFactura;
     }
 
     public static Vector mostrarDetalleContrato(int idContrato) {
