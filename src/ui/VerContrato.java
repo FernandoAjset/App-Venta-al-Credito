@@ -6,6 +6,7 @@
 package ui;
 
 import domain.MetodosDocumentos;
+import domain.PlantillaContrato;
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,8 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 /**
  *
@@ -37,8 +40,11 @@ public class VerContrato extends javax.swing.JFrame {
 
     public VerContrato() {
         initComponents();
-
+//        vertexto.setLineWrap(true);
         consulta();
+        SimpleAttributeSet attribs = new SimpleAttributeSet();
+        StyleConstants.setAlignment(attribs, StyleConstants.ALIGN_JUSTIFIED);
+        vertexto.setParagraphAttributes(attribs, true);
         vertexto.setText(texto);
         vertexto.setEditable(false);
         setLocationRelativeTo(null);
@@ -59,14 +65,14 @@ public class VerContrato extends javax.swing.JFrame {
         int r = (int) Math.round(precio * 100);
         precio = r / 100.0;
 
-        texto = "Conste por el presente documento, el Contrato de Compra Venta No." + String.valueOf(contrato) + " que celebran de  una  parte COMERCIAL LIMA S.A.\n"
-                + ",empresa  constituida  bajo  las  leyes   de   de la Republica de Guatemala,inscrita   con la patente de comercio PA87-78   en   el   Registro\n"
-                + " de Empresas, señalando   domicilio 6ta calle 6-28 Zona 6 Guatemala  para efectos   del   presente contrato, debidamente representada por el señor \n"
-                + "JORGE ARMANDO LIMA CONTRERAS, identificado  con DPI No. 1234 47852 0124 (a  quien en  adelante  se  le denominará “El   Vendedor”);   y,   de   la\n"
-                + " otra   parte el señor(a) " + BuscarFactura.nombre + " (a  quien en  adelante  se  le denominará “El Comprador”).\n"
-                + "\nEl comprador se compromete a pagar la cantidad de: Q." + precio + " en un total de " + cuotas + " cuotas de Q." + mcuotas + " cada una y de NO CUMPLIR CON EL PAGO\n"
-                + " ANTES DESCRITO SE PROCEDERA A INICIAR EL PROCESO JURIDICO, para establecer un acuerdo que pueda solventar la deuda o en caso \n"
-                + "lo amerite pueda REALIZARSE UN EMBARGO DE BIENES.\n\n\n"
+        texto = "Conste por el presente documento, el Contrato de Compra Venta No." + String.valueOf(contrato) + " que celebran de una parte COMERCIAL LIMA S.A. "
+                + "empresa constituida bajo las leyes de la Republica de Guatemala, inscrita con la patente de comercio PA87-78 en el Registro"
+                + " de Empresas, señalando domicilio 6ta calle 6-28 Zona 6 Guatemala para efectos del presente contrato, debidamente representada por el señor "
+                + "JORGE ARMANDO LIMA CONTRERAS, identificado con DPI No. 1234 47852 0124 (a quien en adelante se le denominará “El Vendedor”); y, de la"
+                + " otra parte el señor(a) " + BuscarFactura.nombre + " (a quien en adelante se le denominará “El Comprador”).\n"
+                + "El comprador se compromete a pagar la cantidad de: Q." + precio + " en un total de " + cuotas + " cuotas de Q." + mcuotas + " cada una y de NO CUMPLIR CON EL PAGO"
+                + " ANTES DESCRITO SE PROCEDERA A INICIAR EL PROCESO JURIDICO, para establecer un acuerdo que pueda solventar la deuda o en caso "
+                + "lo amerite pueda REALIZARSE UN EMBARGO DE BIENES.\n\n"
                 + "AMBAS PARTES LEEN Y FIRMAN EL DOCUMENTO EN COMUN ACUERDO A FECHA " + mf + " ,EN LA CIUDAD DE GUATEMALA";
     }
 
@@ -81,13 +87,14 @@ public class VerContrato extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         volver = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        vertexto = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jButtonToPdf = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        vertexto = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -98,66 +105,66 @@ public class VerContrato extends javax.swing.JFrame {
             }
         });
 
-        vertexto.setColumns(20);
-        vertexto.setRows(5);
-        jScrollPane1.setViewportView(vertexto);
-
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("FIRMA COMPRADOR");
+        jLabel1.setText("Firma del comprador");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("FIRMA VENDEDOR");
+        jLabel2.setText("Firma del vendedor");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/FIRMA2.jpg"))); // NOI18N
+        jButtonToPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pdf.png"))); // NOI18N
+        jButtonToPdf.setText("Generar PDF");
+        jButtonToPdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonToPdfActionPerformed(evt);
+            }
+        });
+
+        vertexto.setEditable(false);
+        vertexto.setBorder(null);
+        vertexto.setFocusable(false);
+        jScrollPane2.setViewportView(vertexto);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(61, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(38, 38, 38)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(703, Short.MAX_VALUE))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                .addGap(48, 48, 48)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButtonToPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(206, 206, 206)
+                        .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(304, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(290, 290, 290)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(101, 101, 101)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+                    .addComponent(jButtonToPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,6 +179,13 @@ public class VerContrato extends javax.swing.JFrame {
 
         this.setVisible(false);
     }//GEN-LAST:event_volverActionPerformed
+
+    private void jButtonToPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonToPdfActionPerformed
+        PlantillaContrato nuevoContrato = new PlantillaContrato(texto, contrato);
+        if (nuevoContrato.CrearPlantilla()) {
+            JOptionPane.showMessageDialog(null, "PDF creado con exito");
+        }
+    }//GEN-LAST:event_jButtonToPdfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,12 +227,12 @@ public class VerContrato extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonToPdf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea vertexto;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane vertexto;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

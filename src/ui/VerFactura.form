@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -78,7 +79,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Component id="jButtonToPdf" min="-2" pref="110" max="-2" attributes="0"/>
+              <Component id="jButtonToPdf" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="volver" min="-2" pref="89" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
@@ -265,6 +266,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButtonToPdf">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Icons/pdf.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Generar PDF"/>
       </Properties>
       <Events>

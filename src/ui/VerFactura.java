@@ -92,6 +92,7 @@ public class VerFactura extends javax.swing.JFrame {
         jButtonToPdf = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         m.setFont(new java.awt.Font("Arial Black", 1, 10)); // NOI18N
         m.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -134,6 +135,7 @@ public class VerFactura extends javax.swing.JFrame {
         m1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         m1.setText("FACTURA ELECTRONICA              SERIE: FECI-545");
 
+        jButtonToPdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/pdf.png"))); // NOI18N
         jButtonToPdf.setText("Generar PDF");
         jButtonToPdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +188,7 @@ public class VerFactura extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButtonToPdf, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonToPdf)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(volver, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57))
@@ -257,7 +259,7 @@ public class VerFactura extends javax.swing.JFrame {
     private void jButtonToPdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonToPdfActionPerformed
         PlantillaFactura plantilla = new PlantillaFactura(detalleFactura);
         if (plantilla.CrearPlantilla()) {
-            JOptionPane.showMessageDialog(null, "Factura Creada");
+            JOptionPane.showMessageDialog(null, "PDF creado con exito");
         }
     }//GEN-LAST:event_jButtonToPdfActionPerformed
 

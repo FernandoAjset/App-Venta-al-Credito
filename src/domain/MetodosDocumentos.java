@@ -90,7 +90,6 @@ public class MetodosDocumentos {
                 detalleFactura.precioProducto = res.getDouble(8);
                 detalleFactura.cuotas = res.getInt(9);
                 detalleFactura.montoCuota = res.getDouble(10);
-                System.out.println("detalleFactura = " + detalleFactura);
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error" + e.getMessage(),
